@@ -1,20 +1,21 @@
-FROM centos:7
+FROM ubuntu:22.04
 
-LABEL APP="Studentapp"
-LABEL DevopsEngg="Anup"
-USER root
+LABEL APP="Studentapp" DevopsEngg="Anup"
+
 WORKDIR /opt/
-ADD https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.99/bin/apache-tomcat-8.5.99.tar.gz .
-RUN tar -xzvf apache-tomcat-8.5.99.tar.gz 
-RUN yum install java -y
-WORKDIR /opt/apache-tomcat-8.5.99
-COPY student.war  webapps/student.war
+
+# Install Java
+RUN apt-get update -y && apt-get install -y openjdk-11-jdk wget tar && apt-get clean
+
+# Use local Tomcat archive
+COPY apache-tomcat-8.5.93.tar.gz .
+RUN tar -xzvf apache-tomcat-8.5.93.tar.gz
+
+WORKDIR /opt/apache-tomcat-8.5.93
+COPY student.war webapps/student.war
 COPY context.xml conf/context.xml
-ADD https://s3-us-west-2.amazonaws.com/studentapi-cit/mysql-connector.jar lib/mysql-connector.jar
+COPY mysql-connector.jar lib/mysql-connector.jar
 
 EXPOSE 8080
+CMD ["bin/catalina.sh", "run"]
 
-CMD ["bin/catalina.sh" , "run"]
-#ENTRYPOINT [ "bin/catalina.sh" , "RUN" ]
-#CMD bin/catalina.sh RUN 
-#ENTRYPOINT bin/catalina.sh RUN
