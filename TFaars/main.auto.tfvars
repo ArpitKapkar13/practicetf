@@ -1,5 +1,5 @@
 instance_type = "t2.micro" 
-ami =  "ami-0c398cb65a93047f2"
-key_name  = "30july"
-sg = "sg-0bbfe8e7d4bf3c179"
+ami =  "ami-0ecb62995f68bb549"
+key_name  = "keys"
+sg = "sg-03841647403758b69"
 #bhbvkjfhv

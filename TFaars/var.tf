@@ -7,10 +7,10 @@ variable "ami" {
 }
 
 variable "key_name" {
-  default = "30july"
+  default = "keys"
 }
 
 
 variable "sg" {
-  default = "sg-0cfbfd8e6fd3a7382"
+  default = "sg-03841647403758b69"
 }
