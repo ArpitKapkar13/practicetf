@@ -13,4 +13,4 @@ variable "key_name" {
 
 variable "sg" {
   default = "sg-03841647403758b69"
-}
+}       
